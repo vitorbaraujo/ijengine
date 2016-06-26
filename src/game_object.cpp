@@ -42,12 +42,12 @@ namespace ijengine {
         obj->set_parent(this); 
         update_priorities();
 
-printf("%p added to %p\n", (void *) obj, (void *) this);
+//printf("%p added to %p\n", (void *) obj, (void *) this);
 
-printf("children:");
-for (auto child : m_children)
-printf(" %p", (void *) child);
-printf("\n");
+//printf("children:");
+//for (auto child : m_children)
+//printf(" %p", (void *) child);
+//printf("\n");
     }
 
     void
@@ -65,12 +65,12 @@ printf("\n");
             obj->set_parent(nullptr);
             m_children.erase(remove(m_children.begin(), m_children.end(), obj));
             update_priorities();
-printf("%p removed from %p\n", (void *) obj, (void *) this);
+//printf("%p removed from %p\n", (void *) obj, (void *) this);
 
-printf("children:");
-for (auto child : m_children)
-printf(" %p", (void *) child);
-printf("\n");
+//printf("children:");
+//for (auto child : m_children)
+//printf(" %p", (void *) child);
+//printf("\n");
 
         }
     }

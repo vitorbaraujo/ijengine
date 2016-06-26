@@ -7,7 +7,54 @@
 
 #include <memory>
 
+#include <SDL2/SDL.h>
+
+#define FRAME_VALUES 10
+
 using std::unique_ptr;
+
+
+Uint32 frametimes[FRAME_VALUES];
+Uint32 frametimelast;
+Uint32 framecount;
+
+float framespersecond;
+
+void fpsinit() {
+    memset(frametimes, 0, sizeof(frametimes));
+    framecount = 0;
+    framespersecond = 0;
+    frametimelast = SDL_GetTicks();
+}
+
+void fpsthink() {
+    Uint32 frametimesindex;
+    Uint32 getticks;
+    Uint32 count;
+    Uint32 i;
+
+    frametimesindex = framecount % FRAME_VALUES;
+    getticks = SDL_GetTicks();
+    frametimes[frametimesindex] = getticks - frametimelast;
+    frametimelast = getticks;
+    framecount++;
+
+    if (framecount < FRAME_VALUES) {
+        count = framecount;
+    }
+    else{
+        count = FRAME_VALUES;
+    }
+
+    framespersecond = 0;
+
+    for (i = 0; i < count; i++) {
+        framespersecond += frametimes[i];
+    }
+
+    framespersecond /= count;
+    framespersecond = 1000.f / framespersecond;
+}
 
 namespace ijengine {
 
@@ -39,6 +86,7 @@ namespace ijengine {
 
         m_state = current_level ? RUNNING : QUIT;
 
+        fpsinit();
 
         while (m_state != QUIT)
         {
@@ -67,6 +115,9 @@ namespace ijengine {
             }
 
             last = now;
+
+            fpsthink();
+            printf("%f\n", framespersecond);
         }
 
         return 0;
