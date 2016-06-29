@@ -109,9 +109,9 @@ namespace ijengine
         }
 
         void
-        play_sound_effect(const string &path)
+        play_sound_effect(const string &path, int channel)
         {
-            kernel->play_sound_effect(path);
+            kernel->play_sound_effect(path, channel);
         }
 
         int
@@ -121,9 +121,9 @@ namespace ijengine
         }
 
         int
-        set_sound_effect_volume(double percentage)
+        set_sound_effect_volume(double percentage, int channel)
         {
-            return kernel->set_sound_effect_volume(percentage);
+            return kernel->set_sound_effect_volume(percentage, channel);
         }
     }
 

@@ -22,9 +22,9 @@ public:
     void set_audio_dir(const string& dir_path);
     void play_audio_from_path(const string& title);
     void stop_audio();
-    void play_sound_effect(const string& path);
+    void play_sound_effect(const string& path, int channel = -1);
     int set_audio_volume(double percentage);
-    int set_sound_effect_volume(double percentage);
+    int set_sound_effect_volume(double percentage, int channel = -1);
 
     list<MouseEvent> pending_mouse_events(unsigned now);
     list<SystemEvent> pending_system_events(unsigned now);
